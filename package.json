@@ -1,0 +1,27 @@
+{
+	"name": "realtime-chat-app",
+	"version": "1.0.0",
+	"description": "",
+	"main": "server/index.js",
+	"scripts": {
+		"start": "node server/index.js",
+		"develop": "concurrently \"cd server && npm run dev\" \"cd client && npm start\"",
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"install": "cd server && npm i && cd ../client && npm i",
+		"build": "cd client && npm run build"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ianaack/realtime-chat-app.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/ianaack/realtime-chat-app/issues"
+	},
+	"homepage": "https://github.com/ianaack/realtime-chat-app#readme",
+	"devDependencies": {
+		"concurrently": "^7.3.0"
+	}
+}
