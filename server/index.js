@@ -9,6 +9,7 @@ const { Server } = require("socket.io");
 require("dotenv").config();
 
 const harperSaveMessage = require("./services/harper-save-message");
+const harperGetMessages = require("./services/harper-get-messages");
 
 // Add cors middleware
 app.use(cors());
@@ -57,6 +58,12 @@ io.on("connection", (socket) => {
 		chatRoomUsers = allUsers.filter((user) => user.room === room);
 		socket.to(room).emit("chatroom_users", chatRoomUsers);
 		socket.emit("chatroom_users", chatRoomUsers);
+		// Get last 100 messages sent in the chat room
+		harperGetMessages(room)
+			.then((last100Messages) => {
+				socket.emit("last_100_messages", last100Messages);
+			})
+			.catch((err) => console.log(err));
 	});
 
 	socket.on("send_message", (data) => {
